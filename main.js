@@ -33,33 +33,32 @@ function findProductId(products, el) {
 //Declarando el usuario si este esta logeado y un estado global para la gestion de ciertos componentes
 const user = JSON.parse(localStorage.getItem("user")) || JSON.parse(sessionStorage.getItem("user"));
 const logged = !!user;
-
+const temporalCart = JSON.parse(localStorage.getItem("cart")) || false;
 // ============================= Cart ================================== //
 
 //modelo del carrito
 const cart = {
-	products: logged ? user.cart.products : [],
-	total: logged ? user.cart.total : 0,
-	quantity: logged ? user.cart.quantity : 0,
+	products: logged ? user.cart.products : temporalCart ? temporalCart.products : [],
+	total: logged ? user.cart.total : temporalCart ? temporalCart.total : 0,
+	quantity: logged ? user.cart.quantity : temporalCart ? temporalCart.quantity : 0,
 	addToCart(item) {
 		let indexItem = this.products.findIndex(({
 			id
 		}) => item.id === id);
 		if (indexItem >= 0) {
 			this.products[indexItem].quantity++;
-			this.calculateTotal();
-			displayProductQuantity(this.calculateTotalProducts());
-			displayProductsInCart(this);
 		} else {
 			this.products.push({
 				...item,
 				quantity: 1
 			});
-			this.calculateTotal();
-			displayProductQuantity(this.calculateTotalProducts());
-			displayProductsInCart(this);
-
 		}
+		this.calculateTotal();
+		displayProductQuantity(this.calculateTotalProducts());
+		displayProductsInCart(this);
+		this.saveCartInStorage();
+
+
 	},
 	calculateTotalProducts() {
 		const initialValue = 0;
@@ -74,25 +73,49 @@ const cart = {
 			(previousValue, currentValue) => previousValue + (currentValue.price * currentValue.quantity),
 			initialValue
 		);
+	},
+	removeItem(id) {
+		const newProducts = this.products.filter(product => product.id !== id);
+		this.products = newProducts;
+		this.calculateTotal();
+		displayProductQuantity(this.calculateTotalProducts());
+		displayProductsInCart(this);
+		this.saveCartInStorage();
+	},
+	saveCartInStorage() {
+		const {
+			quantity,
+			products,
+			total
+		} = this;
+		if (logged) {
+			if (localStorage.getItem('user')) {
+				localStorage.setItem('user', JSON.stringify({
+					...user,
+					quantity,
+					products,
+					total
+				}));
+			} else {
+				sessionStorage.setItem('user', JSON.stringify({
+					...user,
+					quantity,
+					products,
+					total
+				}));
+			}
+		} else {
+			localStorage.setItem("cart", JSON.stringify({
+				quantity,
+				products,
+				total
+			}));
+		}
 	}
 };
 
 // Guardar carrito en el storage 
 //TODO
-function saveCartInStorage(cart) {
-	const {
-		products,
-		quantity,
-		total
-	} = cart;
-	if (localStorage.getItem('user')) {
-		user.cart = {
-			products,
-			quantity,
-			total
-		};
-	}
-}
 
 //agregar cantidad de items al carrito
 function displayProductQuantity(quantity) {
@@ -116,6 +139,10 @@ function displayProductsInCart({
 	$("#productsInCart").empty();
 	products.forEach(item => {
 		$("#productsInCart").append(CartProduct(item));
+	});
+	$(".removeBtn").click((e) => {
+		const idToRemove = parseInt(e.target.getAttribute("aria-id"));
+		cart.removeItem(idToRemove);
 	});
 	$("#totalInCart").text(`$${cart.total}`);
 
@@ -152,11 +179,13 @@ function CartProduct({
 	total,
 	title,
 	price,
+	id
 }) {
 	return (`
 			<li class="flex flex-col py-2 px-1 border-b gap-1">
 				<p>${title}</p>
-				<div class="flex justify-between">
+				<div class="flex justify-between relative pr-8">
+				<button aria-id="${id}" class="removeBtn cursor-pointer absolute h-4 w-4 text-sm bg-red-500 text-white flex justify-center items-center rounded-full right-1">x</button>
 					<span class="">$${price * quantity}</span>
 					<span class="text-right w-12 rounded">${quantity}</span>
 				</div>
@@ -193,17 +222,13 @@ function createOnePageElement(image, title, id, price, description) {
 		</div>
 		<div class="flex justify-between mt-2">
 			<p class="pt-1  text-gray-900">$${price}</p>
-		<div class="flex">
-			<svg class="h-6 w-6 fill-current mx-2 text-gray-500 hover:text-black " xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-				<path d="M12,4.595c-1.104-1.006-2.512-1.558-3.996-1.558c-1.578,0-3.072,0.623-4.213,1.758c-2.353,2.363-2.352,6.059,0.002,8.412 l7.332,7.332c0.17,0.299,0.498,0.492,0.875,0.492c0.322,0,0.609-0.163,0.792-0.409l7.415-7.415 c2.354-2.354,2.354-6.049-0.002-8.416c-1.137-1.131-2.631-1.754-4.209-1.754C14.513,3.037,13.104,3.589,12,4.595z M18.791,6.205 c1.563,1.571,1.564,4.025,0.002,5.588L12,18.586l-6.793-6.793C3.645,10.23,3.646,7.776,5.205,6.209 c0.76-0.756,1.754-1.172,2.799-1.172s2.035,0.416,2.789,1.17l0.5,0.5c0.391,0.391,1.023,0.391,1.414,0l0.5-0.5 C14.719,4.698,17.281,4.702,18.791,6.205z" />
-			</svg>
-			<svg id="addToCartBtn" title="Add to cart"  class="animated h-6 w-6 cursor-pointer fill-current text-gray-500 mx-2 hover:text-black" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18">
-				<path fill="none" d="M0 0h24v24H0z"/>
-				<path fill="currentColor" d="M4 16V4H2V2h3a1 1 0 0 1 1 1v12h12.438l2-8H8V5h13.72a1 1 0 0 1 .97 1.243l-2.5 10a1 1 0 0 1-.97.757H5a1 1 0 0 1-1-1zm2 7a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm12 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4z"/>
-			</svg>
+			<div class="flex">
+				<svg id="addToCartBtn" title="Add to cart"  class="animated h-6 w-6 cursor-pointer fill-current text-gray-500 mx-2 hover:text-black" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18">
+					<path fill="none" d="M0 0h24v24H0z"/>
+					<path fill="currentColor" d="M4 16V4H2V2h3a1 1 0 0 1 1 1v12h12.438l2-8H8V5h13.72a1 1 0 0 1 .97 1.243l-2.5 10a1 1 0 0 1-.97.757H5a1 1 0 0 1-1-1zm2 7a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm12 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4z"/>
+				</svg>
+			</div>
 		</div>
-		</div>
-		
 	</div>
 </div>`);
 }
@@ -398,4 +423,7 @@ $(document).ready(async function () {
 	$("#closeCartBtn").click(e => {
 		$("#cartSection").hide();
 	});
+	cart.calculateTotal();
+	displayProductQuantity(cart.calculateTotalProducts());
+	displayProductsInCart(cart);
 });

@@ -11,5 +11,8 @@
   "license": "ISC",
   "jshintConfig": {
     "esversion": 11
+  },
+  "dependencies": {
+    "tailwindcss": "^3.0.23"
   }
 }
