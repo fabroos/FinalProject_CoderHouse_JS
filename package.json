@@ -1,0 +1,15 @@
+{
+  "name": "finalproject",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "npx tailwindcss -i ./styles/template.css -o ./styles/style.css --watch"
+  },
+  "author": "",
+  "license": "ISC",
+  "jshintConfig": {
+    "esversion": 11
+  }
+}

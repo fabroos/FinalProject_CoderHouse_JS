@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Clothely | Products</title>
+	<link rel="stylesheet" href="./styles/style.css">
+</head>
+
+<body>
+
+	<!-- Header -->
+	<div class="fixed z-30 bg-white w-full border-b shadow-sm">
+		<header class="flex justify-between items-center relative origin-bottom">
+			<div class="">
+				<h1 class="font-bold text-2xl mr-auto p-2">Clothely</h1>
+			</div>
+			<div class="absolute origin-top top-full w-full md:flex bg-white hidden md:relative items-center py-5"
+				id="menu">
+				<nav class="md:block col-start-4 col-span-6 m-auto ">
+					<ul class="flex text-gray-500 lg:gap-10 md:flex-row flex-col gap-4">
+						<li id="productsBtn" class="hover:text-black md:hover:scale-110 cursor-pointer">
+							<a href="#galleryNav">Products</a>
+						</li>
+						<li class="hover:text-black md:hover:scale-110 cursor-pointer"><a href="#ABOUT">Contact</a></li>
+						<li class="hover:text-black md:hover:scale-110 cursor-pointer"><a href="#ABOUT">About us</a>
+						</li>
+					</ul>
+
+				</nav>
+				<ul class=" text-gray-500 col-start-11 col-end-13 md:flex-row flex-col lg:gap-10 gap-2 md:flex md:mr-6">
+					<li class="hover:text-black mt-4 md:hover:scale-110 md:mt-0 cursor-pointer" id="loginBtn">
+						<a href="./login.html">Login</a>
+					</li>
+					<li id="cartBtn"
+						class="hover:text-black mt-4 md:hover:scale-110 md:mt-0 cursor-pointer w-min relative"><svg
+							xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18">
+							<path fill="none" d="M0 0h24v24H0z" />
+							<path
+								d="M4 16V4H2V2h3a1 1 0 0 1 1 1v12h12.438l2-8H8V5h13.72a1 1 0 0 1 .97 1.243l-2.5 10a1 1 0 0 1-.97.757H5a1 1 0 0 1-1-1zm2 7a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm12 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4z" />
+						</svg><span class="text-xs font-bold text-black absolute -top-2 -right-2">0</span></li>
+				</ul>
+			</div>
+			<button id="navbarBtn" class="mx-5 md:hidden">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18">
+					<path fill="none" d="M0 0h24v24H0z" />
+					<path d="M3 4h18v2H3V4zm0 7h18v2H3v-2zm0 7h18v2H3v-2z" /></svg>
+			</button>
+		</header>
+	</div>
+
+	<!-- Hero Products -->
+	<div class="heroSection">
+
+	</div>
+
+	<!------ Cart  -->
+	<div class="fixed z-20 h-full w-screen top-0 left-0 cartModal hidden" id="cartSection">
+		<div class="absolute z-30 md:w-auto h-full top-0 bg-white border right-0">
+
+			<div class="flex flex-col px-16 my-32 relative">
+				<div class="absolute font-bold -top-7 cursor-pointer right-6" id="closeCartBtn">X</div>
+				<h3 class="font-bold text-2xl py-2 text-center">Cart</h3>
+				<div class="total text-2xl font-bold border text-center p-4 rounded-full b" id="totalInCart">$0</div>
+				<p class="mt-4">Products:</p>
+				<ul class=" overflow-y-auto h-80" id="productsInCart">
+
+				</ul>
+			</div>
+		</div>
+	</div>
+	<section class="bg-white py-4">
+		<div class="container mx-auto pt-4 pb-12">
+			<nav id="store" class="w-full z-30 top-0 py-1 border-b">
+				<!-- Title -->
+				<div class="w-full container mx-auto flex items-center justify-between mt-0 px-2 py-3">
+					<a class="uppercase tracking-wide no-underline hover:no-underline font-bold text-gray-800 text-xl "
+						href="#">
+						Store
+					</a>
+
+					<div class="flex items-center" id="store-nav-content">
+						<!-- SearchBar -->
+						<a class="search pl-3 inline-block no-underline hover:text-black cursor-pointer"
+							id="toggleSearch">
+							<input type="text" class="input border-b border-black" placeholder="Search..."
+								id="searchInput">
+							<svg class="btn fill-current hover:bg-zinc-50 hover:text-black"
+								xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+								<path
+									d="M10,18c1.846,0,3.543-0.635,4.897-1.688l4.396,4.396l1.414-1.414l-4.396-4.396C17.365,13.543,18,11.846,18,10 c0-4.411-3.589-8-8-8s-8,3.589-8,8S5.589,18,10,18z M10,4c3.309,0,6,2.691,6,6s-2.691,6-6,6s-6-2.691-6-6S6.691,4,10,4z" />
+							</svg>
+						</a>
+						<!-- Order by ascendent - descendent -->
+						<button class="pl-3 no-underline hover:text-black flex" id="toggleSort">
+							<svg class="fill-current hover:text-black" xmlns="http://www.w3.org/2000/svg" width="24"
+								height="24" viewBox="0 0 24 24">
+								<path d="M7 11H17V13H7zM4 7H20V9H4zM10 15H14V17H10z" />
+							</svg>
+							<span class=""> ↑</span>
+						</button>
+						<!-- Select Categories -->
+						<div class="pl-3 inline-block no-underline hover:text-black" id="orderBy">
+							<select type="text" id="opt">
+								<option value="trending">trending</option>
+								<option value="price">price</option>
+								<option value="title">name</option>
+							</select>
+						</div>
+					</div>
+				</div>
+			</nav>
+
+			<!---- asdasdasdasdasdas ------>
+			<!-- Gallery  -->
+			<div class="grid mx-auto gallery relative" id="galleryNav">
+
+			</div>
+		</div>
+	</section>
+	<!-- Footer -->
+	<footer class="container mx-auto bg-white py-8 border-t border-gray-400">
+		<div class="container flex px-3 py-8 ">
+			<div class="w-full mx-auto flex flex-wrap">
+				<div class="flex w-full lg:w-1/2 ">
+					<div class="px-3 md:px-0">
+						<!-- Left - Top-->
+						<h3 class="font-bold text-gray-900" id="ABOUT">About</h3>
+						<p class="py-4">
+							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas vel mi ut felis tempus
+							commodo
+							nec id erat. Suspendisse consectetur dapibus velit ut lacinia.
+						</p>
+					</div>
+				</div>
+				<div class="flex w-full lg:w-1/2 lg:justify-end lg:text-right">
+					<div class="px-3 md:px-0">
+						<!-- Rightbottom -->
+						<h3 class="font-bold text-gray-900">Social</h3>
+						<ul class="list-reset items-center pt-3">
+							<li><a class="inline-block no-underline hover:text-black hover:underline py-1"
+									target="_BLANK" href="https://instagram.com/fabrii_signoretta/">Instagram</a></li>
+							<li><a class="inline-block no-underline hover:text-black hover:underline py-1"
+									target="_BLANK" href="https://linkedin.com/in/signorettafabrizio">LinkedIn</a></li>
+							<li><a class="inline-block no-underline hover:text-black hover:underline py-1"
+									href="https://twitter.com/ffabrizio_s" target="_BLANK">Twitter</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script src="main.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login | Clothely
+  </title>
+  <link rel="stylesheet" href="./styles/style.css" />
+</head>
+
+<body>
+  <header class="flex justify-between items-center relative origin-bottom">
+    <a class="" href="./index.html">
+      <h1 class="font-bold text-2xl mr-auto p-2">Clothely</h1>
+    </a>
+  </header>
+  <div class="loginForm" id="sectionLogin">
+    <div class="py-8 border-b px-5">
+      <p class="font-bold text-lg my-2">Login</p>
+      <form action="" class="px-10 flex flex-col gap-3" id="loginForm">
+        <input class="rounded border px-3 text-sm py-1" type="email" id="emailAddress" name="emailAddress"
+          placeholder="Email address" />
+        <div class="flex justify-between items-center flex-wrap gap-3">
+          <input class="rounded border px-3 text-sm py-1 flex-1" type="password" id="loginPassword" name="password"
+            placeholder="Password" />
+          <div class="flex items-center gap-1 mx-4">
+            <label class="text-xs text-gray-600 cursor-pointer" for="stayLogged">Stay logged</label>
+            <input id="stayLogged" name="stayLogged" type="checkbox" value="true" />
+          </div>
+          <button class="rounded border px-2 py-1 text-sm hover:bg-zinc-200 hover:shadow-md hover:text-gray-800">
+            Login
+          </button>
+        </div>
+      </form>
+    </div>
+    <div class="px-5">
+      <p class="font-bold text-lg my-2">Register</p>
+      <form action="" id="registerForm" class="grid grid-cols-2 grid-rows-4 gap-5 px-10">
+        <input class="rounded border px-3 text-sm py-1 col-span-2" type="text" id="name" placeholder="Name"
+          name="name" />
+        <input class="rounded border px-3 text-sm py-1 col-span-2" type="text" id="email" placeholder="Email"
+          name="emailAddress" />
+
+        <input class="rounded border text-sm py-1 px-3" type="password" id="registerPassword" placeholder="Password"
+          name="password" />
+        <input class="rounded border text-sm py-1 px-3" type="password" id="confirm" placeholder="Confirm Password"
+          name="password" />
+
+        <button
+          class="col-start-2 rounded border px-2 py-1 text-sm hover:bg-zinc-200 hover:shadow-md hover:text-gray-800 w-min ml-auto">
+          Register
+        </button>
+      </form>
+    </div>
+  </div>
+  <script src="scripts/login.js"></script>
+  <!-- <script src="main.js"></script> -->
+</body>
+
+</html>

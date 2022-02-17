@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Account | Clothely</title>
+	<link rel="stylesheet" href="./styles/style.css">
+</head>
+
+<body>
+
+	<!-- Header -->
+	<div class="fixed z-30 bg-white w-full border-b shadow-sm">
+		<header class="flex justify-between items-center relative origin-bottom w-full">
+			<a href="./index.html">
+				<h1 class="font-bold text-2xl mr-auto p-2">Clothely</h1>
+			</a>
+			<div class="absolute origin-top top-full w-full md:flex bg-white hidden md:relative items-center py-5 md:justify-end"
+				id="menu">
+
+				<ul class=" text-gray-500 col-start-11 col-end-13 md:flex-row flex-col lg:gap-10 gap-2 md:flex md:mr-6">
+					<li class="hover:text-black mt-4 md:hover:scale-110 md:mt-0 cursor-pointer" id="loginBtn">
+						<a href="./login.html">Login</a>
+					</li>
+					<li id="cartBtn"
+						class="hover:text-black mt-4 md:hover:scale-110 md:mt-0 cursor-pointer w-min relative"><svg
+							xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18">
+							<path fill="none" d="M0 0h24v24H0z" />
+							<path
+								d="M4 16V4H2V2h3a1 1 0 0 1 1 1v12h12.438l2-8H8V5h13.72a1 1 0 0 1 .97 1.243l-2.5 10a1 1 0 0 1-.97.757H5a1 1 0 0 1-1-1zm2 7a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm12 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4z" />
+						</svg><span class="text-xs font-bold text-black absolute -top-2 -right-2">0</span></li>
+				</ul>
+			</div>
+			<button id="navbarBtn" class="mx-5 md:hidden">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18">
+					<path fill="none" d="M0 0h24v24H0z" />
+					<path d="M3 4h18v2H3V4zm0 7h18v2H3v-2zm0 7h18v2H3v-2z" /></svg>
+			</button>
+		</header>
+	</div>
+
+
+	<!------ Cart  -->
+	<div class="fixed z-20 h-full w-screen top-0 left-0 cartModal hidden" id="cartSection">
+		<div class="absolute z-30 md:w-auto h-full top-0 bg-white border right-0">
+
+			<div class="flex flex-col px-16 my-32 relative">
+				<div class="absolute font-bold -top-7 cursor-pointer right-6" id="closeCartBtn">X</div>
+				<h3 class="font-bold text-2xl py-2 text-center">Cart</h3>
+				<div class="total text-2xl font-bold border text-center p-4 rounded-full b" id="totalInCart">$0</div>
+				<p class="mt-4">Products:</p>
+				<ul class=" overflow-y-auto h-80" id="productsInCart">
+
+				</ul>
+			</div>
+		</div>
+	</div>
+	<section class="bg-white py-4">
+		<div class="container mx-auto pt-4 pb-12">
+
+
+			<!-- component -->
+			<!-- This is an example component -->
+
+			<div class="h-full py-10">
+
+				<div class=" block md:flex">
+
+					<div class="w-full md:w-2/5 p-4 sm:p-6 lg:p-8">
+						<div class="flex justify-between">
+							<span class="text-xl font-semibold block">Admin Profile</span>
+							<div class="flex gap-2">
+								<a href="#"
+									class="-mt-2 text-md font-bold text-white bg-gray-700 rounded-full px-5 py-2 hover:bg-gray-800"
+									id="editBtn">Edit</a>
+								<a href="#"
+									class="-mt-2 text-md font-bold text-white bg-red-700 rounded-full px-5 py-2 hover:bg-red-800"
+									id="logOutBtn">LogOut</a>
+							</div>
+						</div>
+
+						<span class="text-gray-600">Great Profile!</span>
+
+					</div>
+
+					<div class="w-full md:w-3/5 p-8 bg-white lg:ml-4">
+						<div class="rounded  shadow p-6">
+							<div class="pb-6">
+								<label for="name" class="font-semibold text-gray-700 block pb-1">Name</label>
+								<div class="flex">
+									<input disabled id="name" class="border-1 input rounded-r px-4 py-2 w-full"
+										type="text" value="" />
+								</div>
+							</div>
+							<div class="pb-4">
+								<label for="about" class="font-semibold text-gray-700 block pb-1">Email</label>
+								<input disabled id="email" class="border-1 input rounded-r px-4 py-2 w-full"
+									type="email" value="" />
+
+							</div>
+							<div class="pb-4">
+								<label for="about" class="font-semibold text-gray-700 block pb-1">Email</label>
+								<input disabled id="password" class="border-1 input rounded-r px-4 py-2 w-full"
+									type="password" value="" />
+							</div>
+							<div class="flex flex-col">
+								<button id="confirmBtn"
+									class="px-4 py-1 rounded-xl bg-green-300 disabled:bg-gray-300 disabled:opacity-40"
+									disabled>Confirm</button>
+								<div id="msg" class="text-red-600 font-bold text-left"></div>
+							</div>
+
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+
+
+		</div>
+	</section>
+	<!-- Footer -->
+	<footer class="container mx-auto bg-white py-8 border-t border-gray-400">
+		<div class="container flex px-3 py-8 ">
+			<div class="w-full mx-auto flex flex-wrap">
+				<div class="flex w-full lg:w-1/2 ">
+					<div class="px-3 md:px-0">
+						<!-- Left - Top-->
+						<h3 class="font-bold text-gray-900" id="ABOUT">About</h3>
+						<p class="py-4">
+							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas vel mi ut felis tempus
+							commodo
+							nec id erat. Suspendisse consectetur dapibus velit ut lacinia.
+						</p>
+					</div>
+				</div>
+				<div class="flex w-full lg:w-1/2 lg:justify-end lg:text-right">
+					<div class="px-3 md:px-0">
+						<!-- Rightbottom -->
+						<h3 class="font-bold text-gray-900">Social</h3>
+						<ul class="list-reset items-center pt-3">
+							<li><a class="inline-block no-underline hover:text-black hover:underline py-1"
+									target="_BLANK" href="https://instagram.com/fabrii_signoretta/">Instagram</a></li>
+							<li><a class="inline-block no-underline hover:text-black hover:underline py-1"
+									target="_BLANK" href="https://linkedin.com/in/signorettafabrizio">LinkedIn</a></li>
+							<li><a class="inline-block no-underline hover:text-black hover:underline py-1"
+									href="https://twitter.com/ffabrizio_s" target="_BLANK">Twitter</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script src="./scripts/profile.js"></script>
+</body>
+
+</html>

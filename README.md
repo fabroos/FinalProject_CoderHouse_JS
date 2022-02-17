@@ -1,1 +1,1 @@
-# FinalProject_CoderHouse_JS
+# FinalProject CoderHouse Javascript
