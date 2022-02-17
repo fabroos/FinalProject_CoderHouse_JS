@@ -107,7 +107,12 @@ const cart = {
 			const userMatch = users.findIndex(
 				(u) => user.email == u.email && user.password == u.password
 			);
-			users[userMatch] = user;
+			users[userMatch] = {
+				...user,
+				quantity,
+				products,
+				total
+			};
 			localStorage.setItem("users", JSON.stringify(users));
 		} else {
 			localStorage.setItem("cart", JSON.stringify({
