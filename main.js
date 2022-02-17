@@ -93,27 +93,33 @@ const cart = {
 			if (localStorage.getItem('user')) {
 				localStorage.setItem('user', JSON.stringify({
 					...user,
-					quantity,
-					products,
-					total
+					cart: {
+						quantity,
+						products,
+						total
+					},
 				}));
 			} else {
 				sessionStorage.setItem('user', JSON.stringify({
 					...user,
-					quantity,
-					products,
-					total
+					cart: {
+						quantity,
+						products,
+						total
+					},
 				}));
 			}
 			const userMatch = users.findIndex(
 				(u) => user.email == u.email && user.password == u.password
 			);
-			users[userMatch] = {
-				...user,
+			users[userMatch].cart = {
+
 				quantity,
 				products,
 				total
+
 			};
+			console.log(users[userMatch]);
 			localStorage.setItem("users", JSON.stringify(users));
 		} else {
 			localStorage.setItem("cart", JSON.stringify({
