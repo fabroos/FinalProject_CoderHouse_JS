@@ -33,6 +33,7 @@ function findProductId(products, el) {
 //Declarando el usuario si este esta logeado y un estado global para la gestion de ciertos componentes
 const user = JSON.parse(localStorage.getItem("user")) || JSON.parse(sessionStorage.getItem("user"));
 const logged = !!user;
+const users = JSON.parse(localStorage.getItem("users"));
 const temporalCart = JSON.parse(localStorage.getItem("cart")) || false;
 // ============================= Cart ================================== //
 
