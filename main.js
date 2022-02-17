@@ -114,9 +114,6 @@ const cart = {
 	}
 };
 
-// Guardar carrito en el storage 
-//TODO
-
 //agregar cantidad de items al carrito
 function displayProductQuantity(quantity) {
 	$('#addToCartBtn').addClass('bounce');
@@ -166,9 +163,9 @@ function hero() {
 						<section class="w-full bg-yellow-50 p-20 relative bg-hero flex flex-col items-center gap-10 pt-40 ">
 							<h2 class="text-3xl font-bold text-center">Join to Clothely</h2>
 							<p class="font-bold text-xl">Buy the best seasonal clothes</p>
-							<button id="heroBtn"
+							<a id="heroBtn" href="./login.html"
 								class="font-semibold px-6 py-2 text-black bg-orange-300 hover:bg-orange-400 shadow-sm shadow-orange-300/80 rounded-md">
-								Join us</button>
+								Join us</a>
 						</section>
 					</div>
 					`);
