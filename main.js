@@ -104,6 +104,11 @@ const cart = {
 					total
 				}));
 			}
+			const userMatch = users.findIndex(
+				(u) => user.email == u.email && user.password == u.password
+			);
+			users[userMatch] = user;
+			localStorage.setItem("users", JSON.stringify(users));
 		} else {
 			localStorage.setItem("cart", JSON.stringify({
 				quantity,
